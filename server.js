@@ -7,9 +7,17 @@ import authRoute from "./routes/auth.js";
 import productRoute from "./routes/product.js";
 import cartRoute from "./routes/cart.js";
 import orderRoute from "./routes/order.js";
+import cors from "cors";
 const app = express();
 
 dotenv.config();
+
+const corsOptions = {
+  origin: "*",
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions)); // Use this after the variable declaration
 mongoose
   .connect(process.env.MONGODB)
   .then(() => console.log("DBConnect successfully"))

@@ -30,6 +30,6 @@ app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 
-app.listen(8800, () => {
+app.listen(process.env.PORT || 8800, () => {
   console.log("Server is running port 8800");
 });

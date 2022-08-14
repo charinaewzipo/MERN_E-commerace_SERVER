@@ -12,11 +12,16 @@ const app = express();
 
 dotenv.config();
 
-mongoose
-  .connect(process.env.MONGODB)
-  .then(() => console.log("DBConnect successfully"))
-  .catch((err) => console.log(err));
-
+const connect = () => {
+  mongoose
+    .connect(process.env.MONGODB)
+    .then(() => {
+      console.log("Connected to MONGODB");
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 app.use(function (req, res, next) {
   res.header("Content-Type", "application/json;charset=UTF-8");
   res.header("Access-Control-Allow-Credentials", true);
@@ -40,5 +45,6 @@ app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 
 app.listen(process.env.PORT || 8800, () => {
-  console.log("Server is running port 8800");
+  connect();
+  console.log("Connected to server at port 8800");
 });

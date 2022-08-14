@@ -38,3 +38,7 @@ export const signin = async (req, res, next) => {
     next(error);
   }
 };
+export const signout = async (req, res, next) => {
+  res.clearCookie("access_token");
+  res.end();
+};
